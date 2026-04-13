@@ -1,0 +1,30 @@
+{% extends 'persons/base.html' %}
+
+{% block content %}
+<h1>{{ message }}</h1>
+<a href="{% url 'persons:create' %}" class="btn btn-primary mb-3">Add Person</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for person in people %}
+        <tr>
+            <td>{{ person.name }}</td>
+            <td>{{ person.email }}</td>
+            <td>{{ person.age }}</td>
+            <td>
+                <a href="{% url 'persons:edit' person.pk %}" class="btn btn-warning">Edit</a>
+                <a href="{% url 'persons:delete' person.pk %}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
