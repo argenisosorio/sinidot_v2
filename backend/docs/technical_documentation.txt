@@ -1,0 +1,118 @@
+=============================================================
+Documentación técnica para los desarrolladores del SINIDOT v2
+=============================================================
+
+======================
+Patrón de Arquitectura
+======================
+
+Este proyecto se desvía del patrón estándar de Django MVT. En su lugar,
+implementa una Arquitectura en Capas.
+
+Este enfoque desacopla la lógica empresarial central del marco HTTP (Django), lo
+que hace que la aplicación sea significativamente más fácil de probar, mantener
+y escalar a medida que crece.
+
+Las capas
+=========
+
+### Controladores (controllers/):
+
+- Actúa como punto de entrada para solicitudes HTTP (reemplazando las vistas
+tradicionales de Django). Responsable únicamente de manejar solicitudes HTTP,
+validar la entrada, llamar al Servicio apropiado y devolver una respuesta HTTP
+ya sea devolviendo mensajes, una plantilla html o redirigiendo.
+
+- No contienen ninguna lógica empresarial.
+
+### Solicitudes (requests/):
+
+- Maneja la validación de datos HTTP entrantes (por ejemplo, datos POST).
+
+- Se implementa mediante formularios Django para garantizar que los datos estén
+limpios y válidos antes de que lleguen a la capa de lógica empresarial.
+
+### DTO - Objetos de transferencia de datos (dtos/):
+
+- Estructuras de datos simples (a menudo Python) dataclasses o clases estándar
+que se utilizan para pasar datos entre la capa del controlador y la capa de
+servicio.
+
+- Se asegura de que la capa de Servicio no dependa de objetos específicos de
+HTTP como request.POST o formularios Django.
+
+### Servicios (services/):
+
+- Esta capa contiene toda la lógica de negocio y los casos de uso.
+
+- Los servicios toman DTO como entrada, realizan las operaciones necesarias
+(como crear un registro en la BD, enviar correos electrónicos, calcular
+salarios) e interactúan con la base de datos a través de modelos o selectores.
+
+### Modelos (models/):
+
+- Modelos ORM estándar de Django.
+
+- Representan las tablas y relaciones de la base de datos, pero se mantienen
+"simples" (desprovistas de lógica empresarial compleja).
+
+¿Por qué este patrón?
+=====================
+
+- Separación de preocupaciones: la lógica HTTP está separada de la lógica
+empresarial.
+
+- Capacidad de prueba: puede probar servicios y DTO de forma aislada sin
+necesidad de una solicitud HTTP simulada o un servidor web.
+
+- Reutilización: la lógica de negocios en los servicios se puede llamar desde
+cualquier lugar (controladores, tareas de Celery, comandos de administración,
+API) sin duplicar código.
+
+===============================
+Estructura del Backend (Django)
+===============================
+
+├── backend
+│   ├── AUTHORS.txt
+│   ├── config
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   ├── docs
+│   │   └── technical_documentation.txt
+│   ├── manage.py
+│   ├── modules                                    # Directorio de Módulos (Aplicaciones de Django).
+│   │   ├── applicants_management                  # Módulo de Gestión de Solicitantes.
+│   │   │   └── applicants                         # Aplicación de los Solicitantes.
+│   │   │       ├── api                            # Gestión de rutas de la API de los Solicitantes.
+│   │   │       │   ├── api.py
+│   │   │       │   └── schemas.py
+│   │   │       ├── controllers                    # Controladores de solicitudes HTTP (Vistas).
+│   │   │       │   ├── applicant_controller.py
+│   │   │       ├── dtos                           # Objetos de transferencia de datos.
+│   │   │       │   ├── applicant_dto.py
+│   │   │       ├── models                         # Esquemas de base de datos (Django ORM).
+│   │   │       │   ├── applicant.py
+│   │   │       ├── requests                       # Validación de entrada (Formularios).
+│   │   │       │   ├── create_applicant.py
+│   │   │       │   └── update_applicant.py
+│   │   │       ├── services                       # Lógica empresarial central (operaciones de escritura).
+│   │   │       │   ├── applicant_service.py
+│   │   └── donors_management
+│   │       └── donors
+│   │           ├── api
+│   │           │   ├── api.py
+│   │           │   └── schemas.py
+│   │           ├── controllers
+│   │           │   ├── donor_controller.py
+│   │           ├── dtos
+│   │           │   ├── donor_dto.py
+│   │           ├── models
+│   │           │   ├── donor.py
+│   │           ├── requests
+│   │           │   ├── create_donor.py
+│   │           │   └── update_donor.py
+│   │           ├── services
+│   │           │   ├── donor_service.py
+│   ├── README.md
+│   ├── requirements.txt

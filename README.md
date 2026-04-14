@@ -87,3 +87,5 @@ http://127.0.0.1:8000/api/docs
 
 Desde la interfaz puedes usar usar las funcionalidades CRUD sobre el modelo
 Donor y Applicant.
+
+* Documentación técnica del backend: docs/technical_documentation.txt
