@@ -26,8 +26,11 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno de desarrollo local:
 
 <h3>Configuración del backend (Django)</h3>
 
-Se recomienda el uso de un entorno virtual de Python. A continuación se
-describen los pasos para crearlo y activarlo:
+Se recomienda el uso de un entorno virtual para aislar las dependencias del
+proyecto. A continuación, se detallan los pasos para configurar el entorno
+utilizando el módulo estándar venv de Python 3. No obstante, también se sugiere
+el uso de pyenv como una alternativa robusta para la gestión de versiones y
+entornos de Python.
 
 1. Actualiza la lista de paquetes (en sistemas basados en Debian/Ubuntu):
 
@@ -59,7 +62,7 @@ describen los pasos para crearlo y activarlo:
 
 8. Ejecuta las migraciones y crea la base de datos:
 
-    $ python manage.py makemigrations persons
+    $ python manage.py makemigrations donors applicants
 
     $ python manage.py migrate
 
@@ -82,55 +85,5 @@ La documentación interactiva de la API estará disponible en:
 
 http://127.0.0.1:8000/api/docs
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h3>Frontend Setup (Nuxt)</h3>
-
-Open a new terminal and navigate to frontend directory
-
-```
-$ cd frontend
-```
-
-Install Node.js dependencies
-
-```
-$ npm install
-```
-
-Create your local settings file
-
-```
-$ cp .env_example .env
-```
-
-Start the Nuxt development server
-
-```
-$ npm run dev
-```
-
-The Nuxt application will be available at http://localhost:3000/
-
-<h2>Access the Application</h2>
-
-Once both servers are running:
-
-Backend API: http://127.0.0.1:8000/api/person - Django Ninja person endpoint
-
-Frontend: http://localhost:3000/ - View the initial project page
+Desde la interfaz puedes usar usar las funcionalidades CRUD sobre el modelo
+Donor y Applicant.

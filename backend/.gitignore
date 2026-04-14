@@ -7,4 +7,5 @@
 *.sqlite3
 db.sqlite3
 config/settings.py
-modules/persons/migrations
+modules.applicants_management.applicants/migrations
+modules.donors_management.donors/migrations
