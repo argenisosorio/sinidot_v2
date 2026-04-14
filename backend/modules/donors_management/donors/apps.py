@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class PersonsConfig(AppConfig):
+class DonorsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'modules.persons'
+    name = 'modules.donors_management.donors'

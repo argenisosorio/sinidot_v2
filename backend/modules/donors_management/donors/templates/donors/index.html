@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Person Directory</title>
+    <title>Donors List</title>
 </head>
 <body>
     <main>
-        <h1>Person Directory</h1>
-        <a href="{% url 'persons:create' %}">Add New Person</a>
+        <h1>Donors List</h1>
+        <a href="{% url 'donors:create' %}">Add New Donor</a>
         
         <table border="1">
             <thead>
@@ -19,14 +19,14 @@
                 </tr>
             </thead>
             <tbody>
-                {% for person in persons %}
+                {% for donor in donors %}
                 <tr>
-                    <td>{{ person.name }}</td>
-                    <td>{{ person.email }}</td>
-                    <td>{{ person.age }}</td>
+                    <td>{{ donor.name }}</td>
+                    <td>{{ donor.email }}</td>
+                    <td>{{ donor.age }}</td>
                     <td>
-                        <a href="{% url 'persons:edit' person.id %}">Edit</a> |
-                        <form action="{% url 'persons:delete' person.id %}" method="POST" style="display:inline;">
+                        <a href="{% url 'donors:edit' donor.id %}">Edit</a> |
+                        <form action="{% url 'donors:delete' donor.id %}" method="POST" style="display:inline;">
                             {% csrf_token %}
                             <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
                         </form>
@@ -34,7 +34,7 @@
                 </tr>
                 {% empty %}
                 <tr>
-                    <td colspan="5">No persons found.</td>
+                    <td colspan="5">No donors found.</td>
                 </tr>
                 {% endfor %}
             </tbody>

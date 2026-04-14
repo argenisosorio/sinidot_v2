@@ -1,15 +1,10 @@
 from django.db import models
 
 
-class Person(models.Model):
+class Donor(models.Model):
     """
-    Represents a person in the system.
-    
-    This model stores basic information about individuals including their name,
-    email, age, and timestamps for record creation and updates.
+    XXXXXXXXX
     """
-
-    # Personal Information Fields
     name = models.CharField(max_length=100)
     email = models.EmailField()
     age = models.PositiveIntegerField()
@@ -18,10 +13,10 @@ class Person(models.Model):
 
     def __str__(self):
         """
-        String representation of the Person model.
-        
+        XXXXXXXXXX
+
         Returns:
-            str: The person's name for easy identification in admin and queries.
+            str: XXXXXXXXxx
         """
         def __str__(self) -> str:
             return self.name

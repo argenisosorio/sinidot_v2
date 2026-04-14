@@ -1,15 +1,9 @@
 from django import forms
 from django.core.validators import MinLengthValidator, EmailValidator, MinValueValidator, MaxValueValidator
-from modules.persons.models.person import Person
-
-"""
-Formulario para validar los datos de entrada al crear una nueva persona. Este
-formulario utiliza los campos definidos en el modelo Person y agrega
-validaciones específicas
-"""
+from modules.donors_management.donors.models.donor import Donor
 
 
-class CreatePersonRequest(forms.Form):
+class CreateDonorRequest(forms.Form):
     name = forms.CharField(
         max_length=100,
         required=True,
@@ -60,7 +54,7 @@ class CreatePersonRequest(forms.Form):
         """
         email = self.cleaned_data.get("email")
 
-        if Person.objects.filter(email=email).exists():
-            raise forms.ValidationError("Ya existe una persona con este correo electrónico.")
+        if Donor.objects.filter(email=email).exists():
+            raise forms.ValidationError("Ya existe un donante con este correo electrónico.")
 
         return email

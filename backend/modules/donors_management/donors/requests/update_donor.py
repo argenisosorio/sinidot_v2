@@ -1,16 +1,9 @@
 from django import forms
 from django.core.validators import MinLengthValidator, EmailValidator, MinValueValidator, MaxValueValidator
-from modules.persons.models.person import Person
+from modules.donors_management.donors.models.donor import Donor
 
 
-"""
-Formulario para validar los datos de entrada al actualizar una nueva persona.
-Este formulario utiliza los campos definidos en el modelo Person y agrega
-validaciones específicas.
-"""
-
-
-class UpdatePersonRequest(forms.Form):
+class UpdateDonorRequest(forms.Form):
     name = forms.CharField(
         max_length=100,
         required=False,
@@ -41,7 +34,9 @@ class UpdatePersonRequest(forms.Form):
     )
 
     def clean_email(self):
-        """Validate that the email is unique (excluding current person)."""
+        """
+        Validate that the email is unique (excluding current donor).
+        """
         email = self.cleaned_data.get("email")
 
         # Si no se proporciona un nuevo correo electrónico, no es necesario validarlo

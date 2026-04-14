@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Person</title>
+    <title>Create Donor</title>
 </head>
 <body>
     <main>
-        <h1>Create a New Person</h1>
+        <h1>Create a New Donor</h1>
 
-        <form action="{% url 'persons:store' %}" method="POST">
+        <form action="{% url 'donors:store' %}" method="POST">
             {% csrf_token %}
             <div>
                 <label for="name">Name:</label>
