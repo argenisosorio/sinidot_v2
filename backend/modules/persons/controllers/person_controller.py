@@ -2,11 +2,11 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views.decorators.http import require_GET, require_POST
-from apps.persons.dtos.person_dto import PersonDTO, UpdatePersonDTO
-from apps.persons.models.person import Person
-from apps.persons.requests.create_person import CreatePersonRequest
-from apps.persons.requests.update_person import UpdatePersonRequest
-from apps.persons.services import person_service
+from modules.persons.dtos.person_dto import PersonDTO, UpdatePersonDTO
+from modules.persons.models.person import Person
+from modules.persons.requests.create_person import CreatePersonRequest
+from modules.persons.requests.update_person import UpdatePersonRequest
+from modules.persons.services import person_service
 
 
 """

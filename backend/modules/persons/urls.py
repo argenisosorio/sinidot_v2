@@ -1,6 +1,6 @@
 from django.urls import path
-from apps.persons.controllers import person_controller
-from apps.persons.controllers.person_controller import (
+from modules.persons.controllers import person_controller
+from modules.persons.controllers.person_controller import (
     index,
     create,
     edit,

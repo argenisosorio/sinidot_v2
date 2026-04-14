@@ -1,8 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.db import transaction
 from django.shortcuts import get_object_or_404
-from apps.persons.dtos.person_dto import PersonDTO, UpdatePersonDTO
-from apps.persons.models.person import Person
+from modules.persons.dtos.person_dto import PersonDTO, UpdatePersonDTO
+from modules.persons.models.person import Person
 
 """
 Servicio para manejar la lógica de negocio relacionada con la entidad Person.

@@ -2,8 +2,8 @@ from ninja import Router
 from django.shortcuts import get_object_or_404
 from typing import List
 from django.http import HttpRequest
-from apps.persons.api.schemas import PersonCreateSchema, PersonSchema
-from apps.persons.services import person_service
+from modules.persons.api.schemas import PersonCreateSchema, PersonSchema
+from modules.persons.services import person_service
 
 
 router = Router()

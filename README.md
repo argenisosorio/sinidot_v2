@@ -1,16 +1,16 @@
 <h1>SINIDOT v2</h1>
 
-El **SINIDOT**  (Sistema Nacional de Información sobre Donación y Trasplante) es
-una aplicación web diseñada para la gestión de donación y trasplante de órganos
-en Venezuela. Permite el registro inicial de datos, gestión de usuarios,
+El SINIDOT (Sistema Nacional de Información sobre Donación y Trasplante) es una
+aplicación web diseñada para la gestión de donación y trasplante de órganos en
+Venezuela. Permite el registro inicial de datos, gestión de usuarios,
 administración de donantes y solicitudes, así como la generación de reportes y
 estadísticas.
 
 * Entorno: Desarrollo
 
-<h2>Requerimientos del Sistema Operativo</h2>
+<h2>Requerimientos generales</h2>
 
-Asegúrate de tener instaladas las siguientes versiones:
+Asegúrate de tener instaladas los siguientes paquetes y versiones:
 
 ```
 Python >= 3.12
@@ -37,7 +37,7 @@ describen los pasos para crearlo y activarlo:
 
     $ sudo apt install python3-venv
 
-3. Crea el entorno virtual:
+3. Crea el entorno virtual fuera del directorio del SINIDOT v2:
 
     $ python3 -m venv my_environment
 
@@ -49,17 +49,17 @@ describen los pasos para crearlo y activarlo:
 
     $ cd backend
 
-6. Instala las dependencias de Python:
+6. Instala las dependencias específicas de Python:
 
     $ pip install -r requirements.txt
 
 7. Crea tu archivo de configuración local:
 
-    $ cp backend/settings.py_example backend/settings.py
+    $ cp config/settings.py_example config/settings.py
 
 8. Ejecuta las migraciones y crea la base de datos:
 
-    $ python manage.py makemigrations users products
+    $ python manage.py makemigrations persons
 
     $ python manage.py migrate
 

@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.urls import include, path
 from ninja import NinjaAPI
-from apps.persons.api.api import router as person_router
+from modules.persons.api.api import router as person_router
 
 # Instanciamos la API
-api = NinjaAPI(title="Mi Proyecto CRUD API")
+api = NinjaAPI(title="SINIDOT v2")
 
 # Añadimos los routers de cada app (puedes añadir el de products luego)
 api.add_router("/persons/", person_router)
@@ -14,7 +14,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Include the URLs from persons app.
-    path('', include('apps.persons.urls')),
+    path('', include('modules.persons.urls')),
 
     # API routes Django Ninja
     path("api/", api.urls),

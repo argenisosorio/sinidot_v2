@@ -1,6 +1,6 @@
 from django import forms
 from django.core.validators import MinLengthValidator, EmailValidator, MinValueValidator, MaxValueValidator
-from apps.persons.models.person import Person
+from modules.persons.models.person import Person
 
 
 """
