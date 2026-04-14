@@ -76,8 +76,8 @@ entornos de Python.
 
 <h4>Prueba el backend</h4>
 
-Abre tu navegador y visita http://127.0.0.1:8000 verás la aplicación de Django
-en funcionamiento.
+Abre tu navegador y visita http://127.0.0.1:8000 verás el mensaje
+"Bienvenido al SINIDOT v2" lo que indica que Django está funcionando.
 
 <h4>Prueba la API de Django Ninja</h4>
 
