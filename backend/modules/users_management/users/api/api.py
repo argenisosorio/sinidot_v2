@@ -2,8 +2,8 @@ from ninja import Router
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.hashers import make_password
 from typing import List
-from modules.users.models import User
-from modules.users.api.schemas import UserSchema, UserCreateSchema, UserUpdateSchema
+from modules.users_management.users.models import User
+from modules.users_management.users.api.schemas import UserSchema, UserCreateSchema, UserUpdateSchema
 
 
 router = Router()

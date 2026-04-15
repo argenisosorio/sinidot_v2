@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model, login, logout
-from modules.users.forms import CustomUserChangeForm, CustomUserCreationForm
+from modules.users_management.users.forms import CustomUserChangeForm, CustomUserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView as AuthLoginView
 from django.shortcuts import redirect

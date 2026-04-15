@@ -1,7 +1,7 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path, reverse_lazy
-from modules.users import views
-from modules.users.views import (
+from modules.users_management.users import views
+from modules.users_management.users.views import (
     SignUpView,
     UserCreateView,
     UserDeleteView,

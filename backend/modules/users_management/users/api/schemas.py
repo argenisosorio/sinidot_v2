@@ -1,5 +1,5 @@
 from ninja import Router, ModelSchema, Schema
-from modules.users.models import User
+from modules.users_management.users.models import User
 
 
 class UserSchema(ModelSchema):
