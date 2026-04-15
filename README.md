@@ -62,7 +62,7 @@ entornos de Python.
 
 8. Ejecuta las migraciones y crea la base de datos:
 
-    $ python manage.py makemigrations donors applicants
+    $ python manage.py makemigrations users donors applicants
 
     $ python manage.py migrate
 

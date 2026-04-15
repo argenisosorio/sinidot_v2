@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'modules.users',
     'modules.donors_management.donors',
     'modules.applicants_management.applicants',
 ]
@@ -131,3 +132,6 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Tipo de campo de clave primaria predeterminado.
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Modelo de usuario de Django personalizado
+AUTH_USER_MODEL = "users.User"
