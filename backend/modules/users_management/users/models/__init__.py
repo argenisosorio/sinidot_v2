@@ -1,2 +1,2 @@
-# Importación del module User 
+# Importación del modelo User 
 from .user import User
