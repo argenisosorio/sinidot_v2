@@ -9,4 +9,4 @@ db.sqlite3
 config/settings.py
 modules/applicants_management/applicants/migrations
 modules/donors_management/donors/migrations
-modules/users/migrations
+modules/users_management/users/migrations
