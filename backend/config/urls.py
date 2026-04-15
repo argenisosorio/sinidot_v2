@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from ninja import NinjaAPI
 from modules.donors_management.donors.api.api import router as donor_router
 from modules.applicants_management.applicants.api.api import router as applicant_router
-from modules.users.api import router as user_router
+from modules.users.api.api import router as user_router
 
 
 # Función de bienvenida.

@@ -2,9 +2,6 @@ from ninja import Router, ModelSchema, Schema
 from modules.users.models import User
 
 
-router = Router()
-
-
 class UserSchema(ModelSchema):
     """Schema para devolver datos del usuario (Output)"""
     class Meta:
