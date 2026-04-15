@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'modules.donors_management.donors',
     'modules.applicants_management.applicants',
+    'modules.users_management.users',
 ]
 
 # Capas de procesamiento que interceptan las peticiones (request)
@@ -131,3 +132,6 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Tipo de campo de clave primaria predeterminado.
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Modelo de usuario de Django personalizado
+AUTH_USER_MODEL = "users.User"
