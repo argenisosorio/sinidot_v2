@@ -28,6 +28,10 @@
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: ['auth'], // Protege esta página con el middleware de autenticación
+})
+
 import { ref } from 'vue'
 
 useHead({
