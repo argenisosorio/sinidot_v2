@@ -13,7 +13,6 @@
         <tr>
           <th>ID</th>
           <th>Username</th>
-          <th>Email</th>
           <th>First name</th>
           <th>Last name</th>
           <th>Role</th>

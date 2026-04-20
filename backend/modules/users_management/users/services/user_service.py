@@ -11,7 +11,6 @@ def get_all_users() -> list[User]:
     """
     Obtiene todos los usuarios ordenados por fecha de creación.
     """
-    print("--------Entro en get_all_users")
     return User.objects.all().order_by('-date_joined')
 
 
@@ -20,7 +19,6 @@ def create_user(user_dto: UserDTO) -> User:
     """
     Crea un nuevo usuario.
     """
-    print("--------Entro en create_user")
     user = User.objects.create_user(
         username=user_dto.username,
         email=user_dto.email,
