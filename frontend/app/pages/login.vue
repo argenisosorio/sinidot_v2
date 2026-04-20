@@ -47,6 +47,12 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
+// Inicializa el acceso a la variable de entorno para la URL base del backend.
+const config = useRuntimeConfig()
+
+// Ahora 'apiBase' contiene la URL base de la API configurada en el .env
+const apiBase = config.public.apiBase
+
 const username = ref('')
 const password = ref('')
 const errorMessage = ref('') // New reactive variable for the error UI
@@ -57,7 +63,8 @@ const handleLogin = async () => {
   errorMessage.value = '' 
 
   try {
-    const response = await $fetch('http://127.0.0.1:8000/api/users/token/pair', {
+    
+    const response = await $fetch(`${apiBase}/users/token/pair`, {
       method: 'POST',
       body: {
         username: username.value,

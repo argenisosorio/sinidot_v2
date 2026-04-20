@@ -1,5 +1,11 @@
-from ninja import Router, ModelSchema, Schema
+from ninja import Field, Router, ModelSchema, Schema
 from modules.users_management.users.models import User
+
+
+class RefreshTokenSchema(Schema):
+    """Schema para refrescar el token JWT"""
+
+    refresh: str = Field(description="Refresh token JWT")
 
 
 class UserSchema(ModelSchema):
@@ -9,6 +15,7 @@ class UserSchema(ModelSchema):
         # Listamos los campos definidos en tus formularios
         fields = ['id', 'username', 'email', 'first_name', 'last_name', 'role']
 
+
 class UserCreateSchema(Schema):
     """Schema para crear un usuario (Input)"""
     username: str
@@ -17,6 +24,7 @@ class UserCreateSchema(Schema):
     first_name: str = None
     last_name: str = None
     role: str = "user" # Valor por defecto si no se envía
+
 
 class UserUpdateSchema(Schema):
     """Schema para actualizar un usuario (campos opcionales)"""

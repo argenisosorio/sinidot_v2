@@ -58,37 +58,46 @@ onMounted(() => {
   }, 1000)
 })
 
-// 3. The Logout Logic
+// 3. La lógica de cierre de sesión
 const handleLogout = async () => {
+  // Activar el estado de "cerrando sesión" para mostrar un indicador visual y evitar múltiples clics
   isLoggingOut.value = true
+  
+  // Limpiar cualquier mensaje de error que pudiera haber quedado de intentos anteriores
   logoutError.value = ''
 
   try {
-    // Send the POST request to your nested users router
+    // Verificar que exista un token de refresco antes de intentar cerrar sesión
     if (refreshToken.value) {
-      // Note: We use the native $fetch here instead of useApiFetch because 
-      // the logout endpoint expects the refresh token in the BODY, not the HEADER.
+      console.log("Intentando cerrar sesión en el backend con refresh token:", refreshToken.value)
+      // NOTA: Se usa $fetch nativo en lugar de useApiFetch porque el endpoint de logout
+      // espera el token de refresco en el CUERPO de la petición, no en la cabecera.
+      // Realizar petición POST al endpoint de logout del backend
       await $fetch(`${apiBase}/users/logout`, {
-        method: 'POST',
+        method: 'POST',                    // Método HTTP POST
         headers: {
-          Authorization: `Bearer ${accessToken.value}`
+          Authorization: `Bearer ${accessToken.value}`  // Enviar token de acceso en la cabecera
         },
         body: {
-          refresh: refreshToken.value
+          refresh: refreshToken.value      // Enviar token de refresco en el cuerpo de la petición
         }
       })
     }
   } catch (error) {
-    console.error("Logout failed on the backend:", error)
+    // Capturar cualquier error ocurrido durante la petición al backend
+    console.error("Error al cerrar sesión en el backend:", error)
+    // Mostrar mensaje amigable al usuario indicando que la sesión local se cerrará de todos modos
     logoutError.value = "No se pudo conectar con el servidor, pero tu sesión local ha sido cerrada."
   } finally {
-    // 4. Destroy the local cookies securely
-    accessToken.value = null
-    refreshToken.value = null
+    // Este bloque se ejecuta SIEMPRE, haya ocurrido error o no
+    
+    // 4. Destruir las cookies locales de forma segura
+    accessToken.value = null   // Eliminar token de acceso
+    refreshToken.value = null  // Eliminar token de refresco
 
-    // 5. Redirect the user back to the login screen
-    isLoggingOut.value = false
-    await navigateTo('/login')
+    // 5. Redirigir al usuario de vuelta a la pantalla de inicio de sesión
+    isLoggingOut.value = false           // Desactivar el estado de carga
+    await navigateTo('/login')           // Navegar a la ruta de login
   }
 }
 </script>
