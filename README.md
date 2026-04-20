@@ -24,13 +24,14 @@ PostgreSQL >= 17
 
 Sigue estos pasos para ejecutar el proyecto en tu entorno de desarrollo local:
 
-<h3>Configuración del backend (Django)</h3>
+<h3>Configuración del Backend (Django)</h3>
 
 Se recomienda el uso de un entorno virtual para aislar las dependencias del
 proyecto. A continuación, se detallan los pasos para configurar el entorno
 utilizando el módulo estándar venv de Python 3. No obstante, también se sugiere
 el uso de pyenv como una alternativa robusta para la gestión de versiones y
-entornos de Python.
+entornos de Python. A continuación, se detallan los pasos para ejecutar la
+aplicación backend.
 
 1. Actualiza la lista de paquetes (en sistemas basados en Debian/Ubuntu):
 
@@ -88,4 +89,32 @@ http://127.0.0.1:8000/api/docs
 Desde la interfaz puedes usar usar las funcionalidades CRUD sobre el modelo
 Donor y Applicant.
 
-* Documentación técnica del backend: docs/technical_documentation.txt
+* Documentación técnica del Backend: docs/backend_technical_documentation
+
+<h3>Configuración del Frontend (Nuxt)</h3>
+
+A continuación, se detallan los pasos para ejecutar la aplicación frontend.
+
+1. Abre una nueva terminal y navega al directorio del frontend:
+
+    $ cd frontend
+
+2. Instala las dependencias de Node.js:
+
+    $ npm install
+
+3. Crea el archivo de configuración local:
+
+    $ cp .env_example .env
+
+4. Inicia el servidor de desarrollo de Nuxt:
+
+    $ npm run dev
+
+<h4>Prueba el frontend</h4>
+
+Abre tu navegador y visita http://localhost:3000/ para visualizar la página
+inicial del proyecto. Verás la interfaz correspondiente al SINIDOT v2, lo que
+indica que el frontend está funcionando correctamente.
+
+* Documentación técnica del Frontend: docs/frontend_technical_documentation.txt

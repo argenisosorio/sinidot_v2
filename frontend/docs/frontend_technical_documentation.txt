@@ -1,0 +1,60 @@
+========================================================================
+Documentación técnica para los desarrolladores del SINIDOT v2 (Frontend)
+========================================================================
+
+==============================
+Estructura del Frontend (Nuxt)
+==============================
+
+├── backend
+│   ├── AUTHORS.txt
+│   ├── config
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   ├── docs
+│   │   └── technical_documentation.txt
+│   ├── manage.py
+│   ├── modules                                    # Directorio de Módulos (Aplicaciones de Django).
+│   │   ├── applicants_management                  # Módulo de Gestión de Solicitantes.
+│   │   │   └── applicants                         # Aplicación de los Solicitantes.
+│   │   │       ├── api                            # Gestión de rutas de la API de los Solicitantes.
+│   │   │       │   ├── api.py
+│   │   │       │   └── schemas.py
+│   │   │       ├── controllers                    # Controladores de solicitudes HTTP (Vistas).
+│   │   │       │   ├── applicant_controller.py
+│   │   │       ├── dtos                           # Objetos de transferencia de datos.
+│   │   │       │   ├── applicant_dto.py
+│   │   │       ├── models                         # Esquemas de base de datos (Django ORM).
+│   │   │       │   ├── applicant.py
+│   │   │       ├── requests                       # Validación de entrada (Formularios).
+│   │   │       │   ├── create_applicant.py
+│   │   │       │   └── update_applicant.py
+│   │   │       ├── services                       # Lógica empresarial central (operaciones de escritura).
+│   │   │       │   ├── applicant_service.py
+│   │   └── donors_management
+│   │       └── donors
+│   │           ├── api
+│   │           │   ├── api.py
+│   │           │   └── schemas.py
+│   │           ├── controllers
+│   │           │   ├── donor_controller.py
+│   │           ├── dtos
+│   │           │   ├── donor_dto.py
+│   │           ├── models
+│   │           │   ├── donor.py
+│   │           ├── requests
+│   │           │   ├── create_donor.py
+│   │           │   └── update_donor.py
+│   │           ├── services
+│   │           │   ├── donor_service.py
+│   ├── README.md
+│   ├── requirements.txt
+
+
+================================
+Variables de entorno para Nuxt 4
+================================
+
+En el archivo .env en la raíz del proyecto es donde se define la variable
+NUXT_PUBLIC_API_BASE que es la url servida desde el Backend para que Nuxt se
+conecte.
