@@ -21,6 +21,21 @@ def list_users(request: HttpRequest):
     return user_service.get_all_users()
 
 
+@router.post(
+    "/logout",
+    auth=JWTAuth(),
+    description="Endpoint para cerrar sesión (Invalidar el token)",
+)
+def logout(request, data: RefreshTokenSchema):
+    """Endpoint para cerrar sesión (invalidar el token)"""
+    try:
+        token = RefreshToken(data.refresh)
+        token.blacklist()  # Agrega el token a la lista negra
+        return {"success": True, "message": "Logged out successfully"}
+    except Exception as e:
+        return {"success": False, "message": str(e)}
+
+
 # Obtener un Usuario (GET por ID)
 @router.get("/{user_id}", response=UserSchema)
 def get_user(request: HttpRequest, user_id: int):
@@ -44,20 +59,3 @@ def update_user(request: HttpRequest, user_id: int, data: UserCreateSchema):
 def delete_user(request: HttpRequest, user_id: int) -> dict[str, str | bool]:
     user_service.delete_user(user_id)
     return {"success": True, "message": f"User {user_id} deleted successfully"}
-
-
-@router.post(
-    "/logout",
-    auth=JWTAuth(),
-    description="Endpoint para cerrar sesión (Invalidar el token)",
-)
-def logout(request, data: RefreshTokenSchema):
-    """Endpoint para cerrar sesión (invalidar el token)"""
-    print("-------------------------")
-    print(request)
-    try:
-        token = RefreshToken(data.refresh)
-        token.blacklist()  # Agrega el token a la lista negra
-        return {"success": True, "message": "Logged out successfully"}
-    except Exception as e:
-        return {"success": False, "message": str(e)}

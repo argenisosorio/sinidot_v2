@@ -13,6 +13,7 @@
         <tr>
           <th>ID</th>
           <th>Username</th>
+          <th>Email</th>
           <th>First name</th>
           <th>Last name</th>
           <th>Role</th>
@@ -37,6 +38,10 @@
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: ['auth'], // Protege esta página con el middleware de autenticación
+})
+
 // Inicializa el acceso a la variable de entorno para la URL base del backend.
 const config = useRuntimeConfig()
 

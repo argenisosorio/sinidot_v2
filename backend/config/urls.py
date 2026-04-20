@@ -21,9 +21,9 @@ api = NinjaAPI(
 
 
 # Routers de las apps.
-api.add_router("/donors/", donor_router)
-api.add_router("/applicants/", applicant_router)
-api.add_router("/users/", user_router)
+api.add_router("/donors", donor_router)
+api.add_router("/applicants", applicant_router)
+api.add_router("/users", user_router)
 
 
 # Rutas del proyecto.
