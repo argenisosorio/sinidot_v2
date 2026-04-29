@@ -22,7 +22,7 @@
           <td>{{ user.last_name }}</td>
           <td>{{ user.role }}</td>
           <td>
-            {{ new Date(user.date_joined).toLocaleDateString('es-ES') }}
+            {{ formatDate(user.date_joined) }}
           </td>
           <td class="text-center">
             Editar registro | Ver registro
@@ -60,6 +60,19 @@ const { data: response, pending} = await useFetch(`${apiBase}/users/`, {
 
 // Mapeamos los resultados (JSONPlaceholder devuelve un Array directo)
 const users = computed(() => response.value || [])
+
+/* Función para formatear la fecha de creación del usuario.
+ * Si no hay fecha, devuelve vacío.
+ */
+const formatDate = (dateString) => {
+  if (!dateString) return ''
+  const date = new Date(dateString)
+  return new Intl.DateTimeFormat('es-ES', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  }).format(date)
+}
 
 // Observamos 'pending' y asignamos su valor directamente al loader
 watch(pending, (newVal) => {
