@@ -39,6 +39,9 @@ definePageMeta({
   middleware: ['auth'],
 })
 
+// Importamos la función de utilidad para formatear fechas.
+const { formatDate } = utils()
+
 // Inicializa el acceso a la variable de entorno para la URL base del backend.
 const config = useRuntimeConfig()
 
@@ -60,19 +63,6 @@ const { data: response, pending} = await useFetch(`${apiBase}/users/`, {
 
 // Mapeamos los resultados (JSONPlaceholder devuelve un Array directo)
 const users = computed(() => response.value || [])
-
-/* Función para formatear la fecha de creación del usuario.
- * Si no hay fecha, devuelve vacío.
- */
-const formatDate = (dateString) => {
-  if (!dateString) return ''
-  const date = new Date(dateString)
-  return new Intl.DateTimeFormat('es-ES', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric'
-  }).format(date)
-}
 
 // Observamos 'pending' y asignamos su valor directamente al loader
 watch(pending, (newVal) => {
