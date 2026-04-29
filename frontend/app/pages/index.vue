@@ -2,12 +2,12 @@
   <div>
     <h1>
       <img
-        src="/images/star.png"
+        src="/images/logo.png"
         alt="star"
         class="img-fluid mb-3"
         width="50"
       >
-      Django 6 + Django Ninja + Nuxt 4 + Bootstrap 5
+      Bienvenido al Sistema Nacional de Información sobre Donación y Trasplantes (SINIDOT)
     </h1>
 
     <button 
@@ -23,19 +23,20 @@
     <div v-if="logoutError" class="alert alert-warning mt-3" role="alert">
       {{ logoutError }}
     </div>
-
   </div>
 </template>
 
 <script setup>
-definePageMeta({
-  middleware: ['auth'], // Protege esta página con el middleware de autenticación
-})
-
 import { ref } from 'vue'
 
+// Protege esta página con el middleware de autenticación.
+definePageMeta({
+  middleware: ['auth'],
+})
+
+// Configura el título de la página.
 useHead({
-  title: 'Home'
+  title: 'SINIDOT'
 })
 
 // Initialize runtime config to access the API Base URL

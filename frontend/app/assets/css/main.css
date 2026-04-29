@@ -10,8 +10,3 @@ a {
   text-decoration: none;
   font-weight: bold;
 }
-
-.router-link-active {
-  color: #00dc82 !important;
-  text-decoration: underline;
-}

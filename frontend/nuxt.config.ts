@@ -17,16 +17,16 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'es' // Define el idioma del sitio
       },
-      title: 'My Nuxt app', // Título por defecto
+      title: 'SINIDOT', // Título por defecto
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', content: 'Nuxt 4 examples' },
+        { hid: 'description', content: 'Sistema Nacional de Información sobre Donación y Trasplantes (SINIDOT)' },
         { name: 'format-detection', content: 'telephone=no' },
-        { name: 'author', content: 'Ing. Argenis Osorio' }
+        { name: 'author', content: 'CENDITEL' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
       ]
     }
   },
