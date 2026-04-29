@@ -13,7 +13,15 @@ class UserSchema(ModelSchema):
     class Meta:
         model = User
         # Listamos los campos definidos en tus formularios
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'role']
+        fields = [
+            'id',
+            'username',
+            'email',
+            'first_name',
+            'last_name',
+            'role',
+            'date_joined'
+        ]
 
 
 class UserCreateSchema(Schema):

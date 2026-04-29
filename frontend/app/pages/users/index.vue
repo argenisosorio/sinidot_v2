@@ -1,35 +1,31 @@
 <template>
   <div>
-    <GoBack /> |
+    <h1>Lista de Usuarios</h1>
 
-    <h1>Users List</h1>
-
-    <div v-if="error" class="alert alert-danger">
-      Error al cargar usuarios. Inténtalo de nuevo.
-    </div>
-
-    <table v-else>
+    <table class="table table-striped">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>First name</th>
-          <th>Last name</th>
-          <th>Role</th>
-          <th>Actions</th>
+          <th>Nombre de usuario</th>
+          <th>Correo electrónico</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Rol</th>
+          <th>Creado</th>
+          <th class="text-center">Acción</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="user in users" :key="user.id">
-          <td>{{ user.id }}</td>
           <td>{{ user.username }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.first_name }}</td>
           <td>{{ user.last_name }}</td>
           <td>{{ user.role }}</td>
           <td>
-            XXXX
+            {{ new Date(user.date_joined).toLocaleDateString('es-ES') }}
+          </td>
+          <td class="text-center">
+            Editar registro | Ver registro
           </td>
         </tr>
       </tbody>
@@ -38,8 +34,9 @@
 </template>
 
 <script setup>
+// Proteger esta página con el middleware de autenticación.
 definePageMeta({
-  middleware: ['auth'], // Protege esta página con el middleware de autenticación
+  middleware: ['auth'],
 })
 
 // Inicializa el acceso a la variable de entorno para la URL base del backend.
@@ -53,11 +50,11 @@ const loader = useState('loader')
 
 // Configuramos el título de la página
 useHead({
-  title: 'Users list',
+  title: 'Lista de Usuarios',
 })
 
 // Llamada a la API de Backend usando una API de prueba real
-const { data: response, pending, error} = await useFetch(`${apiBase}/users/`, {
+const { data: response, pending} = await useFetch(`${apiBase}/users/`, {
   lazy: true
 })
 

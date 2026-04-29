@@ -10,4 +10,11 @@ class CustomUserCreationForm(UserCreationForm):
         # Indicamos que este formulario trabajará con nuestro modelo User personalizado
         model = User
         # Definimos los campos específicos que se mostrarán en el formulario de creación
-        fields = ("username", "email", "first_name", "last_name", "role")
+        fields = (
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "role"
+        )
+

@@ -10,4 +10,11 @@ class CustomUserChangeForm(UserChangeForm): # Se recomienda heredar de UserChang
         # Vinculamos nuevamente con nuestro modelo User personalizado
         model = User
         # Definimos qué campos serán editables desde la interfaz (ej. el panel de administración)
-        fields = ("username", "email", "first_name", "last_name", "role")
+        fields = (
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "role"
+        )
+
