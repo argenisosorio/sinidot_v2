@@ -44,8 +44,6 @@
 </template>
 
 <script setup>
-import GoBack from '~/components/goBack.vue'
-
 // Proteger esta página con el middleware de autenticación.
 definePageMeta({
   middleware: ['auth'],

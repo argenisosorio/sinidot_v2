@@ -72,6 +72,16 @@
         </select>
       </div>
 
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input
+          v-model="form.password"
+          type="password"
+          class="form-control"
+          required
+        >
+      </div>
+
       <div class="d-flex justify-content-end gap-2">
         <button type="submit" class="btn btn-primary">
           Guardar
@@ -92,13 +102,17 @@ const loader = useState('loader')
 
 // Configuramos el título de la página
 useHead({
-  title: 'Register Product',
+  title: 'Registrar Usuario',
 })
 
-// Objeto reactivo para el formulario
+// Campos del formulario para crear un nuevo usuario.
 const form = ref({
-  name: '',
-  price: ''
+  username: '',
+  email: '',
+  first_name: '',
+  last_name: '',
+  role: '',
+  password: ''
 })
 
 // Función para guardar el producto
