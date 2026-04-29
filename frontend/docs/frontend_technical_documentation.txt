@@ -59,4 +59,7 @@ La ruta del archivo es: app/composables/utils.js
 
 Lista de métodos:
 
--formatDate: Función para formatear fechas a formato dd/mm/yyyy.
+- formatDate: Función para formatear fechas a formato dd/mm/yyyy.
+
+- showRole: Dependiendo del valor delc campo role recibido devuevle el nombre
+completo del rol correspondiente al código proporcionado.

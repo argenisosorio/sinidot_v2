@@ -116,3 +116,72 @@ Estructura del Backend (Django)
 │   │           │   ├── donor_service.py
 │   ├── README.md
 │   ├── requirements.txt
+
+========
+Fixtures
+========
+
+Cargar 15 usuarios en la base de datos, correspondientes a los roles
+predeterminados del sistema.
+
+$ python manage.py loaddata modules/users_management/users/fixtures/users.json
+
+(ADM) Administrador
+Correo: admin@mail.com
+Contraseña: 123456
+
+(SUP) Supervisor
+Correo: supervisor@mail.com
+Contraseña: 123456
+
+(OPD) Operador de donantes
+Correo: operadordonantes@mail.com
+Contraseña: 123456
+
+(OPS) Operador de solicitudes
+Correo: operadorsolicitudes@mail.com
+Contraseña: 123456
+
+(PIN) Personal de inmunología
+Correo: inmunologia@mail.com
+Contraseña: 123456
+
+(CHO) Coordinador hospitalario
+Correo: coordinadorhospitalario@mail.com
+Contraseña: 123456
+
+(OPSR) Operador de solicitudes (Renal)
+Correo: OPSR@mail.com
+Contraseña: 123456
+
+(OPSH) Operador de solicitudes (Hepático)
+Correo: OPSH@mail.com
+Contraseña: 123456
+
+(OPSC) Operador de solicitudes (Córnea)
+Correo: OPSC@mail.com
+Contraseña: 123456
+
+(OPSM) Operador de solicitudes (Médula ósea)
+Correo: OPSM@mail.com
+Contraseña: 123456
+
+(OPSV) Operador de solicitudes (Válvulas cardíacas)
+Correo: OPSV@mail.com
+Contraseña: 123456
+
+(OPSCOR) Operador de solicitudes (Corazón)
+Correo: OPSCOR@mail.com
+Contraseña: 123456
+
+(OPSP) Operador de solicitudes (Páncreas)
+Correo: OPSP@mail.com
+Contraseña: 123456
+
+(OPSPU) Operador de solicitudes (Pulmón)
+Correo: OPSPU@mail.com
+Contraseña: 123456
+
+(USR) Usuario (Donante y/o Solicitante)
+Correo: usuario@mail.com
+Contraseña: 123456

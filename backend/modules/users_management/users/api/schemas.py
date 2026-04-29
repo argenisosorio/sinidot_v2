@@ -9,10 +9,11 @@ class RefreshTokenSchema(Schema):
 
 
 class UserSchema(ModelSchema):
-    """Schema para devolver datos del usuario (Output)"""
+    """
+    Schema para devolver datos de todos los usuarios.
+    """
     class Meta:
         model = User
-        # Listamos los campos definidos en tus formularios
         fields = [
             'id',
             'username',
@@ -31,7 +32,7 @@ class UserCreateSchema(Schema):
     password: str
     first_name: str = None
     last_name: str = None
-    role: str = "user" # Valor por defecto si no se envía
+    role: str = "USR" # Valor por defecto si no se envía
 
 
 class UserUpdateSchema(Schema):

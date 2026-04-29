@@ -1,5 +1,15 @@
 <template>
   <div>
+    <button class="btn btn-success">
+      <NuxtLink
+        to="/users/create">
+        Registrar usuario
+      </NuxtLink>
+    </button>
+
+    <br>
+    <br>
+
     <h1>Lista de Usuarios</h1>
 
     <table class="table table-striped">
@@ -20,7 +30,7 @@
           <td>{{ user.email }}</td>
           <td>{{ user.first_name }}</td>
           <td>{{ user.last_name }}</td>
-          <td>{{ user.role }}</td>
+          <td>{{ showRole(user.role) }}</td>
           <td>
             {{ formatDate(user.date_joined) }}
           </td>
@@ -34,13 +44,15 @@
 </template>
 
 <script setup>
+import GoBack from '~/components/goBack.vue'
+
 // Proteger esta página con el middleware de autenticación.
 definePageMeta({
   middleware: ['auth'],
 })
 
 // Importamos la función de utilidad para formatear fechas.
-const { formatDate } = utils()
+const { formatDate, showRole } = utils()
 
 // Inicializa el acceso a la variable de entorno para la URL base del backend.
 const config = useRuntimeConfig()

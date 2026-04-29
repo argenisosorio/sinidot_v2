@@ -3,7 +3,7 @@ from django.db import models
 
 
 class User(AbstractUser):
-    role = models.CharField(max_length=3, blank=True, null=True)
+    role = models.CharField(max_length=8, blank=True, null=True)
 
     def __str__(self) -> str:
         return self.username

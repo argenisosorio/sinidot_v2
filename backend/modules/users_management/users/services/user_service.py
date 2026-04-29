@@ -27,10 +27,11 @@ def create_user(user_dto: UserDTO) -> User:
         last_name=user_dto.last_name or "",
     )
     
+    # Si se proporciona un rol, asignarlo al usuario.
     if user_dto.role:
         user.role = user_dto.role
         user.save()
-    
+
     return user
 
 

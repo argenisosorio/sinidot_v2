@@ -67,9 +67,10 @@ aplicación backend.
 
     $ python manage.py migrate
 
-9. Crea un superusuario:
+9. Cargar usuarios por defecto en la base de datos, por cada rol disponible se
+carga un usuario.
 
-    $ python manage.py createsuperuser
+    $ python manage.py loaddata modules/users_management/users/fixtures/users.json
 
 10. Inicia el servidor de desarrollo:
 

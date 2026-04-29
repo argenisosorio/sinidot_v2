@@ -1,0 +1,287 @@
+[
+    {
+        "model": "users.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$1200000$YemowGrLSLpGid3nfAn3zo$sezdz2oa3QNAydFAqh91YEt7bLQqvvQu3bBdkIvPwVI=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "Administrador",
+            "last_name": "Sistema",
+            "email": "admin@mail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2026-04-20T17:22:20.403Z",
+            "role": "ADM",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$1200000$YemowGrLSLpGid3nfAn3zo$sezdz2oa3QNAydFAqh91YEt7bLQqvvQu3bBdkIvPwVI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "supervisor",
+            "first_name": "Supervisor",
+            "last_name": "General",
+            "email": "supervisor@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2026-04-29T00:00:00.000Z",
+            "role": "SUP",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$1200000$YemowGrLSLpGid3nfAn3zo$sezdz2oa3QNAydFAqh91YEt7bLQqvvQu3bBdkIvPwVI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "operadordonantes",
+            "first_name": "Operador",
+            "last_name": "Donantes",
+            "email": "operadordonantes@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2026-04-29T00:00:00.000Z",
+            "role": "OPD",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$1200000$YemowGrLSLpGid3nfAn3zo$sezdz2oa3QNAydFAqh91YEt7bLQqvvQu3bBdkIvPwVI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "operadorsolicitudes",
+            "first_name": "Operador",
+            "last_name": "Solicitudes",
+            "email": "operadorsolicitudes@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2026-04-29T00:00:00.000Z",
+            "role": "OPS",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$1200000$YemowGrLSLpGid3nfAn3zo$sezdz2oa3QNAydFAqh91YEt7bLQqvvQu3bBdkIvPwVI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "inmunologia",
+            "first_name": "Personal",
+            "last_name": "Inmunología",
+            "email": "inmunologia@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2026-04-29T00:00:00.000Z",
+            "role": "PIN",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 6,
+        "fields": {
+            "password": "pbkdf2_sha256$1200000$YemowGrLSLpGid3nfAn3zo$sezdz2oa3QNAydFAqh91YEt7bLQqvvQu3bBdkIvPwVI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "coordinadorhospitalario",
+            "first_name": "Coordinador",
+            "last_name": "Hospitalario",
+            "email": "coordinadorhospitalario@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2026-04-29T00:00:00.000Z",
+            "role": "CHO",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 7,
+        "fields": {
+            "password": "pbkdf2_sha256$1200000$YemowGrLSLpGid3nfAn3zo$sezdz2oa3QNAydFAqh91YEt7bLQqvvQu3bBdkIvPwVI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "opsrenal",
+            "first_name": "Operador",
+            "last_name": "Solicitudes (Renal)",
+            "email": "opsr@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2026-04-29T00:00:00.000Z",
+            "role": "OPSR",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 8,
+        "fields": {
+            "password": "pbkdf2_sha256$1200000$YemowGrLSLpGid3nfAn3zo$sezdz2oa3QNAydFAqh91YEt7bLQqvvQu3bBdkIvPwVI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "opshepatico",
+            "first_name": "Operador",
+            "last_name": "Solicitudes (Hepático)",
+            "email": "opsh@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2026-04-29T00:00:00.000Z",
+            "role": "OPSH",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 9,
+        "fields": {
+            "password": "pbkdf2_sha256$1200000$YemowGrLSLpGid3nfAn3zo$sezdz2oa3QNAydFAqh91YEt7bLQqvvQu3bBdkIvPwVI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "opscornea",
+            "first_name": "Operador",
+            "last_name": "Solicitudes (Córnea)",
+            "email": "opsc@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2026-04-29T00:00:00.000Z",
+            "role": "OPSC",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 10,
+        "fields": {
+            "password": "pbkdf2_sha256$1200000$YemowGrLSLpGid3nfAn3zo$sezdz2oa3QNAydFAqh91YEt7bLQqvvQu3bBdkIvPwVI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "opsmedulaosea",
+            "first_name": "Operador",
+            "last_name": "Solicitudes (Médula ósea)",
+            "email": "opsm@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2026-04-29T00:00:00.000Z",
+            "role": "OPSM",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 11,
+        "fields": {
+            "password": "pbkdf2_sha256$1200000$YemowGrLSLpGid3nfAn3zo$sezdz2oa3QNAydFAqh91YEt7bLQqvvQu3bBdkIvPwVI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "opsvalvulascardiacas",
+            "first_name": "Operador",
+            "last_name": "Solicitudes (Válvulas cardíacas)",
+            "email": "opsv@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2026-04-29T00:00:00.000Z",
+            "role": "OPSV",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 12,
+        "fields": {
+            "password": "pbkdf2_sha256$1200000$YemowGrLSLpGid3nfAn3zo$sezdz2oa3QNAydFAqh91YEt7bLQqvvQu3bBdkIvPwVI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "opscorazon",
+            "first_name": "Operador",
+            "last_name": "Solicitudes (Corazón)",
+            "email": "opscor@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2026-04-29T00:00:00.000Z",
+            "role": "OPSCOR",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 13,
+        "fields": {
+            "password": "pbkdf2_sha256$1200000$YemowGrLSLpGid3nfAn3zo$sezdz2oa3QNAydFAqh91YEt7bLQqvvQu3bBdkIvPwVI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "opspancreas",
+            "first_name": "Operador",
+            "last_name": "Solicitudes (Páncreas)",
+            "email": "opsp@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2026-04-29T00:00:00.000Z",
+            "role": "OPSP",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 14,
+        "fields": {
+            "password": "pbkdf2_sha256$1200000$YemowGrLSLpGid3nfAn3zo$sezdz2oa3QNAydFAqh91YEt7bLQqvvQu3bBdkIvPwVI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "opspulmon",
+            "first_name": "Operador",
+            "last_name": "Solicitudes (Pulmón)",
+            "email": "opspu@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2026-04-29T00:00:00.000Z",
+            "role": "OPSPU",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 15,
+        "fields": {
+            "password": "pbkdf2_sha256$1200000$YemowGrLSLpGid3nfAn3zo$sezdz2oa3QNAydFAqh91YEt7bLQqvvQu3bBdkIvPwVI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "usuario",
+            "first_name": "Usuario",
+            "last_name": "Final",
+            "email": "usuario@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2026-04-29T00:00:00.000Z",
+            "role": "USR",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]
