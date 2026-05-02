@@ -1,5 +1,5 @@
 =======================================================================
-Documentación técnica para los desarrolladores del SINIDOT v2 (Backend)
+DOCUMENTACIÓN TÉCNICA PARA LOS DESARROLLADORES DEL SINIDOT V2 (BACKEND)
 =======================================================================
 
 ======================
@@ -9,65 +9,71 @@ Patrón de Arquitectura
 Este proyecto se desvía del patrón estándar de Django MVT. En su lugar,
 implementa una Arquitectura en Capas.
 
-Este enfoque desacopla la lógica empresarial central del marco HTTP (Django), lo
-que hace que la aplicación sea significativamente más fácil de probar, mantener
-y escalar a medida que crece.
+Este enfoque desacopla la lógica empresarial central del marco HTTP
+(Django), lo que hace que la aplicación sea significativamente más fácil
+de probar, mantener y escalar a medida que crece.
 
-Las capas
+
+Las Capas
 =========
 
-### Controladores (controllers/):
+1. API (api/)
+-------------
+- Expone los endpoints RESTful para consumir desde el frontend (Nuxt 4)
+  o desde servicios externos.
+- Implementado con Django Ninja (framework moderno para APIs en Django).
+- Define routers y schemas (Pydantic) para validación y serialización.
+- Se integra con la autenticación JWT (ninja-jwt).
+- Genera documentación OpenAPI automática en /api/docs.
 
-- Actúa como punto de entrada para solicitudes HTTP (reemplazando las vistas
-tradicionales de Django). Responsable únicamente de manejar solicitudes HTTP,
-validar la entrada, llamar al Servicio apropiado y devolver una respuesta HTTP
-ya sea devolviendo mensajes, una plantilla html o redirigiendo.
+2. Controladores (controllers/)
+-------------------------------
+- Actúa como punto de entrada para solicitudes HTTP (reemplazando las
+  vistas tradicionales de Django).
+- Responsable únicamente de manejar solicitudes HTTP, validar la entrada,
+  llamar al Servicio apropiado y devolver una respuesta HTTP (mensajes,
+  plantilla html o redirección).
+- No contiene ninguna lógica empresarial.
 
-- No contienen ninguna lógica empresarial.
+3. Solicitudes (requests/)
+---------------------------
+- Maneja la validación de datos HTTP entrantes (ej: datos POST).
+- Se implementa mediante formularios Django para garantizar que los datos
+  estén limpios y válidos antes de llegar a la capa de lógica empresarial.
 
-### Solicitudes (requests/):
+4. DTO - Objetos de Transferencia de Datos (dtos/)
+---------------------------------------------------
+- Estructuras de datos simples (dataclasses o clases estándar de Python)
+  que se utilizan para pasar datos entre la capa del controlador y la
+  capa de servicio.
+- Asegura que la capa de Servicio no dependa de objetos específicos de
+  HTTP como request.POST o formularios Django.
 
-- Maneja la validación de datos HTTP entrantes (por ejemplo, datos POST).
-
-- Se implementa mediante formularios Django para garantizar que los datos estén
-limpios y válidos antes de que lleguen a la capa de lógica empresarial.
-
-### DTO - Objetos de transferencia de datos (dtos/):
-
-- Estructuras de datos simples (a menudo Python) dataclasses o clases estándar
-que se utilizan para pasar datos entre la capa del controlador y la capa de
-servicio.
-
-- Se asegura de que la capa de Servicio no dependa de objetos específicos de
-HTTP como request.POST o formularios Django.
-
-### Servicios (services/):
-
+5. Servicios (services/)
+-------------------------
 - Esta capa contiene toda la lógica de negocio y los casos de uso.
+- Los servicios toman DTO como entrada, realizan las operaciones
+  necesarias (ej: crear registro en BD, enviar correos, calcular datos)
+  e interactúan con la base de datos a través de modelos o selectores.
 
-- Los servicios toman DTO como entrada, realizan las operaciones necesarias
-(como crear un registro en la BD, enviar correos electrónicos, calcular
-salarios) e interactúan con la base de datos a través de modelos o selectores.
-
-### Modelos (models/):
-
+6. Modelos (models/)
+---------------------
 - Modelos ORM estándar de Django.
+- Representan las tablas y relaciones de la base de datos, pero se
+  mantienen "simples" (desprovistas de lógica empresarial compleja).
 
-- Representan las tablas y relaciones de la base de datos, pero se mantienen
-"simples" (desprovistas de lógica empresarial compleja).
 
 ¿Por qué este patrón?
 =====================
 
-- Separación de preocupaciones: la lógica HTTP está separada de la lógica
-empresarial.
+- Separación de preocupaciones: la lógica HTTP está separada de la
+  lógica empresarial.
+- Capacidad de prueba: permite probar servicios y DTO de forma aislada
+  sin necesidad de una solicitud HTTP simulada o un servidor web.
+- Reutilización: la lógica de negocios en los servicios se puede llamar
+  desde cualquier lugar (controladores, tareas de Celery, comandos de
+  administración, API) sin duplicar código.
 
-- Capacidad de prueba: puede probar servicios y DTO de forma aislada sin
-necesidad de una solicitud HTTP simulada o un servidor web.
-
-- Reutilización: la lógica de negocios en los servicios se puede llamar desde
-cualquier lugar (controladores, tareas de Celery, comandos de administración,
-API) sin duplicar código.
 
 ===============================
 Estructura del Backend (Django)
@@ -77,45 +83,46 @@ Estructura del Backend (Django)
 │   ├── AUTHORS.txt
 │   ├── config
 │   │   ├── settings.py
-│   │   ├── urls.py
+│   │   └── urls.py
 │   ├── docs
 │   │   └── technical_documentation.txt
 │   ├── manage.py
-│   ├── modules                                    # Directorio de Módulos (Aplicaciones de Django).
-│   │   ├── applicants_management                  # Módulo de Gestión de Solicitantes.
-│   │   │   └── applicants                         # Aplicación de los Solicitantes.
-│   │   │       ├── api                            # Gestión de rutas de la API de los Solicitantes.
+│   ├── modules
+│   │   ├── applicants_management
+│   │   │   └── applicants
+│   │   │       ├── api
 │   │   │       │   ├── api.py
 │   │   │       │   └── schemas.py
-│   │   │       ├── controllers                    # Controladores de solicitudes HTTP (Vistas).
-│   │   │       │   ├── applicant_controller.py
-│   │   │       ├── dtos                           # Objetos de transferencia de datos.
-│   │   │       │   ├── applicant_dto.py
-│   │   │       ├── models                         # Esquemas de base de datos (Django ORM).
-│   │   │       │   ├── applicant.py
-│   │   │       ├── requests                       # Validación de entrada (Formularios).
+│   │   │       ├── controllers
+│   │   │       │   └── applicant_controller.py
+│   │   │       ├── dtos
+│   │   │       │   └── applicant_dto.py
+│   │   │       ├── models
+│   │   │       │   └── applicant.py
+│   │   │       ├── requests
 │   │   │       │   ├── create_applicant.py
 │   │   │       │   └── update_applicant.py
-│   │   │       ├── services                       # Lógica empresarial central (operaciones de escritura).
-│   │   │       │   ├── applicant_service.py
+│   │   │       └── services
+│   │   │           └── applicant_service.py
 │   │   └── donors_management
 │   │       └── donors
 │   │           ├── api
 │   │           │   ├── api.py
 │   │           │   └── schemas.py
 │   │           ├── controllers
-│   │           │   ├── donor_controller.py
+│   │           │   └── donor_controller.py
 │   │           ├── dtos
-│   │           │   ├── donor_dto.py
+│   │           │   └── donor_dto.py
 │   │           ├── models
-│   │           │   ├── donor.py
+│   │           │   └── donor.py
 │   │           ├── requests
 │   │           │   ├── create_donor.py
 │   │           │   └── update_donor.py
-│   │           ├── services
-│   │           │   ├── donor_service.py
+│   │           └── services
+│   │               └── donor_service.py
 │   ├── README.md
-│   ├── requirements.txt
+│   └── requirements.txt
+
 
 ========
 Fixtures
@@ -126,62 +133,45 @@ predeterminados del sistema.
 
 $ python manage.py loaddata modules/users_management/users/fixtures/users.json
 
-(ADM) Administrador
-Correo: admin@mail.com
-Contraseña: 123456
 
-(SUP) Supervisor
-Correo: supervisor@mail.com
-Contraseña: 123456
+Credenciales de Acceso
+======================
 
-(OPD) Operador de donantes
-Correo: operadordonantes@mail.com
-Contraseña: 123456
++------+------------------------------------+--------------+
+| Rol  | Correo                             | Contraseña   |
++------+------------------------------------+--------------+
+| ADM  | admin@mail.com                     | 123456       |
+| SUP  | supervisor@mail.com                | 123456       |
+| OPD  | operadordonantes@mail.com          | 123456       |
+| OPS  | operadorsolicitudes@mail.com       | 123456       |
+| PIN  | inmunologia@mail.com               | 123456       |
+| CHO  | coordinadorhospitalario@mail.com   | 123456       |
+| OPSR | OPSR@mail.com                      | 123456       |
+| OPSH | OPSH@mail.com                      | 123456       |
+| OPSC | OPSC@mail.com                      | 123456       |
+| OPSM | OPSM@mail.com                      | 123456       |
+| OPSV | OPSV@mail.com                      | 123456       |
+|OPSCOR| OPSCOR@mail.com                    | 123456       |
+| OPSP | OPSP@mail.com                      | 123456       |
+| OPSPU| OPSPU@mail.com                     | 123456       |
+| USR  | usuario@mail.com                   | 123456       |
++------+------------------------------------+--------------+
 
-(OPS) Operador de solicitudes
-Correo: operadorsolicitudes@mail.com
-Contraseña: 123456
+Roles del Sistema
+=================
 
-(PIN) Personal de inmunología
-Correo: inmunologia@mail.com
-Contraseña: 123456
-
-(CHO) Coordinador hospitalario
-Correo: coordinadorhospitalario@mail.com
-Contraseña: 123456
-
-(OPSR) Operador de solicitudes (Renal)
-Correo: OPSR@mail.com
-Contraseña: 123456
-
-(OPSH) Operador de solicitudes (Hepático)
-Correo: OPSH@mail.com
-Contraseña: 123456
-
-(OPSC) Operador de solicitudes (Córnea)
-Correo: OPSC@mail.com
-Contraseña: 123456
-
-(OPSM) Operador de solicitudes (Médula ósea)
-Correo: OPSM@mail.com
-Contraseña: 123456
-
-(OPSV) Operador de solicitudes (Válvulas cardíacas)
-Correo: OPSV@mail.com
-Contraseña: 123456
-
-(OPSCOR) Operador de solicitudes (Corazón)
-Correo: OPSCOR@mail.com
-Contraseña: 123456
-
-(OPSP) Operador de solicitudes (Páncreas)
-Correo: OPSP@mail.com
-Contraseña: 123456
-
-(OPSPU) Operador de solicitudes (Pulmón)
-Correo: OPSPU@mail.com
-Contraseña: 123456
-
-(USR) Usuario (Donante y/o Solicitante)
-Correo: usuario@mail.com
-Contraseña: 123456
+- ADM: Administrador
+- SUP: Supervisor
+- OPD: Operador de donantes
+- OPS: Operador de solicitudes
+- PIN: Personal de inmunología
+- CHO: Coordinador hospitalario
+- OPSR: Operador de solicitudes (Renal)
+- OPSH: Operador de solicitudes (Hepático)
+- OPSC: Operador de solicitudes (Córnea)
+- OPSM: Operador de solicitudes (Médula ósea)
+- OPSV: Operador de solicitudes (Válvulas cardíacas)
+- OPSCOR: Operador de solicitudes (Corazón)
+- OPSP: Operador de solicitudes (Páncreas)
+- OPSPU: Operador de solicitudes (Pulmón)
+- USR: Usuario (Donante y/o Solicitante)

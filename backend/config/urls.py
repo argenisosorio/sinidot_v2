@@ -1,3 +1,10 @@
+"""
+Configuración principal de URLs y API del proyecto SINIDOT v2.
+
+Define las rutas principales del proyecto, incluyendo la API REST
+con Django Ninja y el panel de administración de Django.
+"""
+
 from django.contrib import admin
 from django.urls import include, path
 from django.http import HttpResponse
@@ -7,33 +14,52 @@ from modules.applicants_management.applicants.api.api import router as applicant
 from modules.users_management.users.api.api import router as user_router
 
 
-# Función de bienvenida.
-def home(request):
+# =============================================================================
+# Vistas básicas (no-API)
+# =============================================================================
+
+def home(request) -> HttpResponse:
+    """
+    Vista de la página de bienvenida del proyecto.
+
+    Args:
+        request: Objeto HttpRequest de Django.
+
+    Returns:
+        Respuesta HTML con el mensaje de bienvenida del sistema.
+    """
     return HttpResponse("<h1>Bienvenido al SINIDOT v2</h1>")
 
 
-# Instancia de la API.
+# =============================================================================
+# Configuración de la API con Django Ninja
+# =============================================================================
+
+# Instancia principal de la API con metadatos documentados.
 api = NinjaAPI(
-    title="SINIDOT v2 API", 
+    title="SINIDOT v2 API",
     version="2.0.0",
-    description="SINIDOT v2 Endpoints"
+    description="SINIDOT v2 Endpoints",
 )
 
 
-# Routers de las apps.
-api.add_router("/donors", donor_router)
-api.add_router("/applicants", applicant_router)
-api.add_router("/users", user_router)
+# Registro de los routers de cada módulo de la aplicación.
+api.add_router("/donors", donor_router)       # Endpoints para donantes
+api.add_router("/applicants", applicant_router)  # Endpoints para solicitantes
+api.add_router("/users", user_router)         # Endpoints para usuarios
 
 
-# Rutas del proyecto.
+# =============================================================================
+# Configuración de URLs del proyecto
+# =============================================================================
+
 urlpatterns = [
-    # Ruta raíz
-    path('', home),
+    # Ruta raíz del sistema (página de bienvenida)
+    path("", home),
 
-    # Ruta para Administradores.
-    path('admin/', admin.site.urls),
+    # Panel de administración de Django para gestión interna
+    path("admin/", admin.site.urls),
 
-    # Rutas del API de Django Ninja.
+    # Endpoints de la API REST bajo el prefijo /api/
     path("api/", api.urls),
 ]

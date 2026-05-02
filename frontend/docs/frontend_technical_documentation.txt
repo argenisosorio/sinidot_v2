@@ -1,65 +1,109 @@
-========================================================================
-Documentación técnica para los desarrolladores del SINIDOT v2 (Frontend)
-========================================================================
+====================================================================
+DOCUMENTACIÓN TÉCNICA PARA DESARROLLADORES DEL SINIDOT v2 (FRONTEND)
+====================================================================
 
 ==============================
 Estructura del Frontend (Nuxt)
 ==============================
 
-├── app
-│   ├── app.vue
-│   ├── assets
-│   │   └── css
-│   │       └── main.css
-│   ├── components
-│   │   ├── Footer.vue
-│   │   ├── goBack.vue
-│   │   ├── Loader.vue
-│   │   └── Navbar.vue
-│   ├── composables
-│   │   ├── useApiFetch.js
-│   │   └── utils.js
-│   ├── middleware
-│   │   └── auth.js
-│   ├── pages
-│   │   ├── index.vue
-│   │   ├── login.vue
-│   │   └── users
-│   │       └── index.vue
-│   └── plugins
-│       └── bootstrap.client.ts
-├── data.txt
-├── docs
-│   └── frontend_technical_documentation.txt
-├── eslint.config.mjs
-├── nuxt.config.ts
-├── package.json
-├── package-lock.json
-├── public
-│   ├── favicon.png
-│   ├── images
-│   │   ├── logo.png
-│   │   └── star.png
-│   └── robots.txt
-└── tsconfig.json
+La siguiente es la estructura de directorios del proyecto frontend del
+SINIDOT v2, organizada según las convenciones oficiales de Nuxt 4.
+
+├── app/
+│   ├── app.vue                      # Componente raíz de la aplicación
+│   ├── assets/                      # Recursos estáticos (CSS, imágenes, fuentes)
+│   │   └── css/
+│   │       └── main.css             # Estilos globales de la aplicación
+│   ├── components/                  # Componentes Vue reutilizables
+│   │   ├── Footer.vue               # Componente de pie de página
+│   │   ├── goBack.vue               # Componente de botón para retroceder
+│   │   ├── Loader.vue               # Componente de carga/loading
+│   │   └── Navbar.vue               # Componente de barra de navegación
+│   ├── composables/                 # Funciones reactivas reutilizables
+│   │   ├── useApiFetch.js           # Composable para peticiones HTTP
+│   │   └── utils.js                 # Utilidades globales
+│   ├── middleware/                  # Middleware de navegación
+│   │   └── auth.js                  # Middleware de autenticación
+│   ├── pages/                       # Vistas y rutas de la aplicación
+│   │   ├── index.vue                # Página principal
+│   │   ├── login.vue                # Página de inicio de sesión
+│   │   └── users/                   # Módulo de usuarios
+│   │       └── index.vue            # Listado de usuarios
+│   └── plugins/                     # Plugins de Nuxt
+│       └── bootstrap.client.ts      # Configuración de Bootstrap (solo cliente)
+├── data.txt                         # Archivo de datos auxiliares
+├── docs/                            # Documentación del proyecto
+│   └── frontend_technical_documentation.txt  # Este archivo
+├── eslint.config.mjs                # Configuración de ESLint
+├── nuxt.config.ts                  # Configuración principal de Nuxt
+├── package.json                    # Dependencias y scripts del proyecto
+├── package-lock.json               # Bloqueo de versiones de dependencias
+├── public/                         # Archivos públicos estáticos
+│   ├── favicon.png                 # Favicon de la aplicación
+│   ├── images/                     # Imágenes estáticas
+│   │   ├── logo.png                # Logo del sistema
+│   │   └── star.png                # Icono de estrella (decorativo)
+│   └── robots.txt                  # Configuración para motores de búsqueda
+└── tsconfig.json                   # Configuración de TypeScript
 
 ================================
 Variables de entorno para Nuxt 4
 ================================
 
-En el archivo .env en la raíz del proyecto es donde se define la variable
-NUXT_PUBLIC_API_BASE que es la url servida del API desde el Backend para que
-Nuxt se conecte.
+Las variables de entorno se definen en el archivo .env ubicado en la raíz del
+proyecto. Estas variables son utilizadas para configurar la aplicación en
+diferentes entornos (desarrollo, pruebas, producción).
 
-===============================================================
-Método globales para usarse en cualquier ligar de la aplicación
-===============================================================
+Variable principal:
 
-La ruta del archivo es: app/composables/utils.js
+NUXT_PUBLIC_API_BASE: URL base de la API del backend a la que se conecta Nuxt.
+Esta variable es pública (prefijo NUXT_PUBLIC_) y puede ser accedida desde el
+cliente mediante `useRuntimeConfig().public.apiBase`.
 
-Lista de métodos:
+Ejemplo de archivo `.env`:
 
-- formatDate: Función para formatear fechas a formato dd/mm/yyyy.
+# Archivo: .env
+NUXT_PUBLIC_API_BASE=http://localhost:8000/api/
 
-- showRole: Dependiendo del valor delc campo role recibido devuevle el nombre
-completo del rol correspondiente al código proporcionado.
+Uso en el código:
+
+const config = useRuntimeConfig()
+const apiUrl = config.public.apiBase
+
+==================
+Funciones globales
+==================
+
+Las funciones globales se encuentran en el archivo app/composables/utils.js
+
+Estas funciones están disponibles en toda la aplicación gracias al sistema de
+auto-importación de Nuxt 4.
+
+- formatDate: Función para formatear fechas al formato local dd/mm/yyyy.
+
+- showRole: Función que devuelve el nombre completo del rol a partir de su código.
+
+==============================
+Composables de peticiones HTTP
+==============================
+
+Archivo: app/composables/useApiFetch.js
+
+Este composable centraliza todas las peticiones HTTP hacia el backend,
+implementando automáticamente el manejo de autenticación JWT, refresco de
+tokens y manejo de errores.
+
+===========================
+Middleware de autenticación
+===========================
+
+Archivo: app/middleware/auth.js
+
+Este middleware protege las rutas que requieren autenticación, redirigiendo al
+usuario a la página de login si no está autenticado.
+
+====================
+Paquetes de terceros
+====================
+
+- Bootstrap 5
